@@ -1,0 +1,7 @@
+{
+  "venvPath": "extraction-service",
+  "venv": ".venv",
+  "extraPaths": [
+    "extraction-service/.venv/Lib/site-packages"
+  ]
+}

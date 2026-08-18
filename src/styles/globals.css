@@ -1,0 +1,217 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* LIGHT MODE PALETTE (Neutral White + Pure Violet) */
+  :root {
+    --background: 0 0% 98%;          /* #FAFAFA Neutral White Background */
+    --foreground: 240 10% 10%;       /* #18181B Primary Text */
+
+    --card: 0 0% 100%;               /* #FFFFFF Card Surface */
+    --card-foreground: 240 10% 10%;
+
+    --popover: 240 5% 96%;           /* #F4F4F5 Secondary Surface */
+    --popover-foreground: 240 10% 10%;
+
+    --primary: 263 70% 50%;          /* #7C3AED Primary Violet */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 240 5% 96%;         /* #F4F4F5 Secondary */
+    --secondary-foreground: 240 10% 10%;
+
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 5% 34%;  /* #52525B Secondary Text */
+
+    --accent: 263 70% 95%;           /* rgba(124, 58, 237, 0.08) */
+    --accent-foreground: 263 70% 45%;/* #6D28D9 */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 6% 90%;          /* #E4E4E7 Border */
+    --input: 240 6% 90%;
+    --ring: 263 70% 50%;
+
+    --radius: 0.85rem;
+
+    --success: 142 72% 29%;
+    --success-foreground: 138 76% 97%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 48 96% 89%;
+
+    --error: 0 84% 60%;
+    --error-foreground: 0 86% 97%;
+  }
+
+  /* TRUE BLACK DARK MODE PALETTE (#000000 + Violet #8B5CF6) */
+  .dark {
+    --background: 0 0% 0%;           /* #000000 True Black */
+    --foreground: 0 0% 96%;          /* #F5F5F5 Primary Text */
+
+    --card: 0 0% 4%;                 /* #0A0A0A Card Surface */
+    --card-foreground: 0 0% 96%;
+
+    --popover: 0 0% 6%;              /* #101010 Elevated Card/Popover */
+    --popover-foreground: 0 0% 96%;
+
+    --primary: 263 90% 66%;          /* #8B5CF6 Primary Violet */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 10%;         /* #18181B Secondary Surface */
+    --secondary-foreground: 0 0% 96%;
+
+    --muted: 0 0% 10%;
+    --muted-foreground: 240 5% 46%;  /* #71717A Muted Text */
+
+    --accent: 263 90% 15%;           /* rgba(139, 92, 246, 0.12) Subtle Violet */
+    --accent-foreground: 263 90% 80%;/* #A855F7 Bright Violet */
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 12%;              /* #1F1F1F Border */
+    --input: 0 0% 10%;               /* #18181B Input */
+    --ring: 263 90% 66%;
+
+    --success: 142 70% 45%;
+    --success-foreground: 144 70% 98%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 48 96% 89%;
+
+    --error: 0 84% 60%;
+    --error-foreground: 0 86% 97%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    transition:
+      background-color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      color 200ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/30 selection:text-white;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  :root {
+    color-scheme: light;
+  }
+  .dark {
+    color-scheme: dark;
+  }
+}
+
+/* ── Ambient Violet Glow Utilities ───────────────────────────────────── */
+.ambient-violet-glow {
+  box-shadow: 0 0 35px -8px rgba(139, 92, 246, 0.20);
+}
+
+.dark .glass-black {
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.card-hover-effect {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover-effect:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -10px rgba(0, 0, 0, 0.08);
+}
+.dark .card-hover-effect:hover {
+  box-shadow: 0 12px 30px -10px rgba(139, 92, 246, 0.18);
+  border-color: rgba(139, 92, 246, 0.35);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/30 rounded-full hover:bg-muted-foreground/50 transition-colors;
+}
+
+/* ── AI Orbital Particle Keyframes (Pure Violet/Purple) ───────────────── */
+@keyframes particle-orbit-1 {
+  0% { transform: rotate(0deg) translateX(12px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(12px) rotate(-360deg); }
+}
+
+@keyframes particle-orbit-2 {
+  0% { transform: rotate(120deg) translateX(12px) rotate(-120deg); }
+  100% { transform: rotate(480deg) translateX(12px) rotate(-480deg); }
+}
+
+@keyframes particle-orbit-3 {
+  0% { transform: rotate(240deg) translateX(12px) rotate(-240deg); }
+  100% { transform: rotate(600deg) translateX(12px) rotate(-600deg); }
+}
+
+.animate-orbit-1 {
+  animation: particle-orbit-1 2.4s linear infinite;
+}
+.animate-orbit-2 {
+  animation: particle-orbit-2 2.4s linear infinite;
+}
+.animate-orbit-3 {
+  animation: particle-orbit-3 2.4s linear infinite;
+}
+
+/* Pipeline Shimmer */
+@keyframes pipeline-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.pipeline-shimmer {
+  background: linear-gradient(
+    90deg,
+    #8B5CF6 0%,
+    rgba(168, 85, 247, 0.7) 50%,
+    #8B5CF6 100%
+  );
+  background-size: 200% auto;
+  animation: pipeline-shimmer 1.6s linear infinite;
+}
+
+@keyframes check-pop {
+  0%   { transform: scale(0) rotate(-15deg); opacity: 0; }
+  70%  { transform: scale(1.25) rotate(4deg);  opacity: 1; }
+  100% { transform: scale(1)    rotate(0deg);  opacity: 1; }
+}
+.check-pop {
+  animation: check-pop 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.progress-bar-transition {
+  transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── 3D Card Flip Utilities ─────────────────────────────────────────── */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
